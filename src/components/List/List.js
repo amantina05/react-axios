@@ -4,33 +4,30 @@ import './List.css';
 import Customer from './Customer/Customer';
 import CreateCustomer from './CreateCustomer/CreateCustomer';
 
-
 class List extends Component {
-
   render() {
-    const {
-      customerList
-    } = this.props;
+    const { customerList, startNewCustomer } = this.props;
 
-    const CustomerComponents = customerList.map( customer => (
+    const CustomerComponents = customerList.map(customer => (
       <Customer
-        key={ customer.id }
-        id={ customer.id }
-        first={ customer.first }
-        last={ customer.last }
+        key={customer.id}
+        id={customer.id}
+        first={customer.first}
+        last={customer.last}
       />
     ));
 
     return (
       <div id="List__container">
         {
-            <div id="List__namesContainer">
-              { CustomerComponents }
-              <CreateCustomer />
-            </div>
+          <div id="List__namesContainer">
+            {CustomerComponents}
+            {/* pass down startNewCustomer in props down to createCustomer component */}
+            <CreateCustomer startNewCustomer={startNewCustomer} />
+          </div>
         }
       </div>
-    )
+    );
   }
 }
 
